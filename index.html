@@ -26,14 +26,23 @@
           <div class="card">
           <div class="card-block">
               <h3 class="card-header bg-warning"><i class="fas fa-pen"></i> Pétition</h3>
-              <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! On va signer la pétition !</i><br />
+              <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! On va signer des pétitions !</i><br />
               <span class="badge badge-info">Chaque pétition rajoute 1 copain par clic</span><br />
               <span id="perClickUpgrade" class="badge badge-light">Déjà 0 pétitions</span><br />
               <span id="perClickUpgradeCost" class="badge badge-light">0 GJ doivent signer pour une nouvelle pétition</span><br />
               <button type="button" name="recrute-par-clic" onclick="recruteGiletPerClick()" class="btn btn-warning btn-lg">Signer !</button></p>
             </div>
           </div>
-          Page Facebook du village <span class="badge badge-info">1 GJ/s</span> : <button type="button" name="recrute-auto-fbpvillage" onclick="buildFBPVillage()" id="buildFBPVillage"  class="btn btn-primary">Créer</button> <span class="badge badge-pill badge-light"><span id="FBPVillage">0</span>GJ/s</span> Coût : <span id="buildCost">10</span> Gilets Jaunes
+          <div class="card">
+          <div class="card-block">
+              <h3 class="card-header bg-primary"><i class="fas fa-pen"></i> Page Facebook de village</h3>
+              <p class="p-2 card-text"><i>Va falloir envahir un rond point, c'est le moment de créer une page Facebook pour les Gilets Jaunes du village</i><br />
+              <span class="badge badge-info">Chaque page recrute 1 GJ par seconde</span><br />
+              <span id="FBPVillage" class="badge badge-light">0 pages crées</span><br />
+              <span id="buildCost" class="badge badge-light">100 GJ doivent liker pour une nouvelle page</span><br />
+              <button type="button" name="recrute-auto-fbpvillage" onclick="buildFBPVillage()" id="buildFBPVillage"  class="btn btn-primary btn-lg">Créer</button></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
