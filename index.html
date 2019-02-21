@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/erosson/swarm-numberformat/v0.4.0/dist/swarm-numberformat.min.js"></script>
+    <title>GILETS JAUNES IDLE</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>Gilets Jaunes Idle</h1>
+      <p>Pour que Macro démissionne, il va falloir mobiliser sur les ronds points.</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p id="giletsRecrutes" class="gilets-recrutes bg-warning p-3">0 Gilets Jaunes</p>
+        </div>
+        <div class="col">
+          <button type="button" name="recrute" onclick="recruteGilet()" class="btn btn-warning btn-lg">Mobiliser <span id="oneClick">1</span> copain</button><br /> <br />
+          <div class="card">
+          <div class="card-block">
+              <h3 class="card-header bg-warning"><i class="fas fa-pen"></i> Pétition</h3>
+              <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! On va signer la pétition !</i><br />
+              <span class="badge badge-info">Chaque pétition rajoute 1 copain par clic</span><br />
+              <span id="perClickUpgrade" class="badge badge-light">Déjà 0 pétitions</span><br />
+              <span id="perClickUpgradeCost" class="badge badge-light">0 GJ doivent signer pour une nouvelle pétition</span><br />
+              <button type="button" name="recrute-par-clic" onclick="recruteGiletPerClick()" class="btn btn-warning btn-lg">Signer !</button></p>
+            </div>
+          </div>
+          Page Facebook du village <span class="badge badge-info">1 GJ/s</span> : <button type="button" name="recrute-auto-fbpvillage" onclick="buildFBPVillage()" id="buildFBPVillage"  class="btn btn-primary">Créer</button> <span class="badge badge-pill badge-light"><span id="FBPVillage">0</span>GJ/s</span> Coût : <span id="buildCost">10</span> Gilets Jaunes
+        </div>
+      </div>
+    </div>
+  <script src="main.js" charset="utf-8" type="text/javascript"></script>
+  </body>
+</html>
