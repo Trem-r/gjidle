@@ -3,12 +3,14 @@ var gameData = {
   gilet: 1,
   giletPerClick: 1,
   giletPerClickCost: 10,
+  giletsPerSecond: 0,
   giletFBPVillage: 0,
   // lastTick: Date.now()
 }
 if (saveGame != null){
 if (typeof saveGame.gilet  !== "undefined" ) gameData.gilet = saveGame.gilet;
 if (typeof saveGame.giletPerClick !== "undefined") gameData.giletPerClick = saveGame.giletPerClick;
+if (typeof saveGame.giletsPerSecond !== "undefined") gameData.giletsPerSecond = saveGame.giletsPerSecond;
 if (typeof saveGame.giletPerClickCost !== "undefined") gameData.giletPerClickCost = saveGame.giletPerClickCost;
 if (typeof saveGame.giletFBPVillage !== "undefined") gameData.giletFBPVillage = saveGame.giletFBPVillage;
 }
@@ -18,6 +20,7 @@ update("perClickUpgradeCost", numberformat.format(gameData.giletPerClickCost, {f
 update("FBPVillage", gameData.giletFBPVillage + " pages crées ");
 update("buildCost", Math.floor(100 * Math.pow(1.3,gameData.giletFBPVillage)) + " GJ doivent liker pour une nouvelle page " );
 update("oneClick", gameData.giletPerClick );
+var tempGPS = 0;
 
 
 function update(id, content) {
@@ -29,20 +32,48 @@ function recruteGilet() {
   update("giletsRecrutes", gameData.gilet + " Gilets Jaunes")
 }
 
+function recruteHeros(nomHeros) {
+  switch (nomHeros) {
+    case "Rouet":
+      gameData.gilet += Math.floor(0.05 * gameData.gilet);
+      document.getElementById("recruteRouet").disabled = true;
+      setTimeout(function(){document.getElementById("recruteRouet").disabled = false;},5000);
+      break;
+    case "Marcel":
+      var oldGPS = gameData.giletsPerSecond;
+      // tempGPS += Math.floor(2 * oldGPS);
+      tempGPS = oldGPS;
+      //gameData.giletsPerSecond = tempGPS;
+      document.getElementById("recruteMarcel").disabled = true;
+      update("giletsRecrutesPerSecond", tempGPS + " Gilets Jaunes par seconde")
+      setTimeout(function(){document.getElementById("recruteMarcel").disabled = false; gameData.giletsPerSecond = oldGPS, tempGPS = 0; update("giletsRecrutesPerSecond", gameData.giletsPerSecond + " Gilets Jaunes par seconde");},5000);
+      break;
+    default:
+  }
+  update("giletsRecrutes", gameData.gilet + " Gilets Jaunes")
+}
+
+
+
 function recruteGiletPerClick() {
   if (gameData.gilet >= gameData.giletPerClickCost) {
     gameData.gilet -= gameData.giletPerClickCost
     gameData.giletPerClick += 1
     gameData.giletPerClickCost *= 2
     document.getElementById("giletsRecrutes").innerHTML = gameData.gilet + " Gilets Jaunes"
-    update("perClickUpgrade", "Déjà "  + gameData.giletPerClick + " signatures ")
+    update("perClickUpgrade", "Déjà "  + gameData.giletPerClick + " pétitions ")
     update("perClickUpgradeCost", numberformat.format(gameData.giletPerClickCost, {format: 'longScale'}) + " GJ doivent signer pour une nouvelle pétition")
     update("oneClick", gameData.giletPerClick );
     }
 }
 
+function updateGPS(tempValue){
+
+}
+
 function recruteGiletPerSecond() {
-  gameData.gilet += gameData.giletFBPVillage
+  gameData.gilet += gameData.giletsPerSecond;
+  gameData.giletsPerSecond = gameData.giletFBPVillage + tempGPS;
   update("giletsRecrutes", gameData.gilet + " Gilets Jaunes")
 }
 
@@ -50,7 +81,7 @@ function recruteGiletPerSecond() {
 function buildFBPVillage(){
     var buildCost = Math.floor(100 * Math.pow(1.3,gameData.giletFBPVillage));     //works out the cost of this cursor
     if(gameData.gilet >= buildCost){                                   //checks that the player can afford the cursor
-        gameData.giletFBPVillage = gameData.giletFBPVillage + 1;                                   //increases number of cursors
+      gameData.giletFBPVillage = gameData.giletFBPVillage + 1;                                   //increases number of cursors
     	gameData.gilet = gameData.gilet - buildCost;                          //removes the cookies spent
       update("FBPVillage", gameData.giletFBPVillage + " pages crées ");
       document.getElementById('giletsRecrutes').innerHTML = gameData.gilet + " Gilets Jaunes";  //updates the number of cookies for the user
@@ -58,12 +89,14 @@ function buildFBPVillage(){
     var nextCost = Math.floor(100 * Math.pow(1.3,gameData.giletFBPVillage));       //works out the cost of the next cursor
     update("buildCost", nextCost + " GJ doivent liker pour une nouvelle page " );
 };
+
 var mainGameLoop = window.setInterval(function() {
   // diff = Date.now() - gameData.lastTick;
   // gameData.lastTick = Date.now()
   // gameData.gilet += gameData.giletPerClick * (diff / 1000)
   recruteGiletPerSecond();
   document.getElementById("giletsRecrutes").innerHTML = gameData.gilet + " Gilets Jaunes"
+  document.getElementById("giletsRecrutesPerSecond").innerHTML = gameData.giletsPerSecond + " Gilets Jaunes par seconde"
 }, 1000)
 
 var saveGameLoop = window.setInterval(function() {
