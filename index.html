@@ -27,7 +27,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <div class="card" style="width:200px">
+              <div class="card" style="width:100%; height:400px">
                 <div class="card-body">
                   <img src="https://i.imgur.com/gtK84ris.png" alt="Card image">
                   <h4 class="card-title">Frédéric Rouet</h4>
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="col">
-              <div class="card" style="width:200px">
+              <div class="card" style="width:100%; height:400px">
                 <div class="card-body">
                   <img src="https://i.imgur.com/JkoqAygs.png" alt="Card image">
                   <h4 class="card-title">Marcel de Caraman</h4>
@@ -52,24 +52,103 @@
           <button type="button" name="recrute" onclick="recruteGilet()" class="btn btn-warning btn-lg">Mobiliser <span id="oneClick">1</span> copains</button><br /> <br />
           <div class="card">
           <div class="card-block">
-              <h4 class="card-header bg-warning"><i class="fas fa-pen"></i> Pétition</h4>
-              <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! On va signer des pétitions !</i><br />
-              <span class="badge badge-info">Chaque pétition rajoute 1 copain par clic</span><br />
-              <span id="perClickUpgrade" class="badge badge-light">Déjà 0 pétitions</span><br />
-              <span id="perClickUpgradeCost" class="badge badge-light">0 GJ doivent signer pour une nouvelle pétition</span><br />
-              <button type="button" name="recrute-par-clic" onclick="recruteGiletPerClick()" class="btn btn-warning btn-lg">Signer !</button></p>
+              <h4 class="card-header bg-warning"><i class="fas fa-pen"></i> Pétitions</h4>
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active font-weight-bold text-warning" data-toggle="tab" href="#papier">Papier</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold text-warning" data-toggle="tab" href="#tract">Tract</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold text-warning" data-toggle="tab" href="#internet">Internet</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane container active" id="papier">
+                  <p class="p-2 card-text"><i>Il paraît que la limite de vitesse va baisser à 80km/h ? IMPENSABLE ! Allons voir un voisin pour faire une pétition</i><br />
+                  <span class="badge badge-info">Chaque pétition sur papier rajoute 1 copain par clic</span><br />
+                  <span id="perClickUpgradePapier" class="badge badge-light">Déjà 0 pétitions</span><br />
+                  <span id="perClickUpgradePapierCost" class="badge badge-light">10 GJ doivent signer pour une nouvelle pétition</span><br />
+                  <button type="button" name="recrute-par-clic-papier" onclick="recruteGiletPerClick('Papier')" class="btn btn-warning btn-lg">Signer !</button></p>
+                </div>
+                <div class="tab-pane container fade" id="tract">
+                  <p class="p-2 card-text"><i>Supprimer l'ISF ? Non mais c'est pas possible ! Vite on va tracter sur la place !</i><br />
+                  <span class="badge badge-info">Chaque tract de pétition rajoute 5 copains par clic</span><br />
+                  <span id="perClickUpgradeTract" class="badge badge-light">Déjà 0 pétitions</span><br />
+                  <span id="perClickUpgradeTractCost" class="badge badge-light">50 GJ doivent signer pour une nouvelle pétition</span><br />
+                  <button type="button" name="recrute-par-clic-tract" onclick="recruteGiletPerClick('Tract')" class="btn btn-warning btn-lg">Signer !</button></p>
+                </div>
+                <div class="tab-pane container fade" id="internet">
+                  <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! Allons tous sur Internet !</i><br />
+                  <span class="badge badge-info">Chaque pétition sur Internet rajoute 100 copains par clic</span><br />
+                  <span id="perClickUpgradeInternet" class="badge badge-light">Déjà 0 pétitions</span><br />
+                  <span id="perClickUpgradeInternetCost" class="badge badge-light">100000 GJ doivent signer pour une nouvelle pétition</span><br />
+                  <button type="button" name="recrute-par-clic-internet" onclick="recruteGiletPerClick('Internet')" class="btn btn-warning btn-lg">Signer !</button></p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="card">
-          <div class="card-block">
+          <!-- <div class="card">
+            <div class="card-block">
               <h4 class="card-header bg-primary text-white"><i class="fab fa-facebook-f"></i> Page Facebook de village</h4>
               <p class="p-2 card-text"><i>Va falloir envahir un rond point, c'est le moment de créer une page Facebook pour les Gilets Jaunes du village</i><br />
               <span class="badge badge-info">Chaque page recrute 1 GJ par seconde</span><br />
               <span id="FBPVillage" class="badge badge-light">0 pages crées</span><br />
-              <span id="buildCost" class="badge badge-light">100 GJ doivent liker pour une nouvelle page</span><br />
+              <span id="buildCostVillage" class="badge badge-light">100 GJ doivent liker pour une nouvelle page</span><br />
               <button type="button" name="recrute-auto-fbpvillage" onclick="buildFBPVillage()" id="buildFBPVillage"  class="btn btn-primary btn-lg">Créer</button></p>
             </div>
           </div>
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-header bg-primary text-white"><i class="fab fa-facebook-f"></i> Page Facebook de la région</h4>
+              <p class="p-2 card-text"><i>Il est temps de passer aux choses sérieuses et de bloquer Carrefour Portet et plus le rond point de l'Autoroute</i><br />
+              <span class="badge badge-info">Chaque page recrute 10 GJ par seconde</span><br />
+              <span id="FBPRegion" class="badge badge-light">0 pages crées</span><br />
+              <span id="buildCostRegion" class="badge badge-light">1000 GJ doivent liker pour une nouvelle page</span><br />
+              <button type="button" name="recrute-auto-fbpregion" onclick="buildFBPRegion()" id="buildFBPRegion"  class="btn btn-primary btn-lg">Créer</button></p>
+            </div>
+          </div> -->
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-header bg-primary text-white"><i class="fab fa-facebook-f"></i> Pages Facebook</h4>
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active font-weight-bold " data-toggle="tab" href="#village">Village</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold " data-toggle="tab" href="#region">Régionale</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link font-weight-bold " data-toggle="tab" href="#pays">Nationale</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane container active" id="village">
+                  <p class="p-2 card-text"><i>Va falloir envahir un rond point, c'est le moment de créer une page Facebook pour les Gilets Jaunes du village</i><br />
+                  <span class="badge badge-info">Chaque page recrute 1 GJ par seconde</span><br />
+                  <span id="FBPVillage" class="badge badge-light">0 pages crées</span><br />
+                  <span id="buildCostVillage" class="badge badge-light">100 GJ doivent liker pour une nouvelle page</span><br />
+                  <button type="button" name="recrute-auto-fbpvillage" onclick="buildFBPVillage()" id="buildFBPVillage"  class="btn btn-primary btn-lg">Créer</button></p>
+                </div>
+                <div class="tab-pane container fade" id="region">
+                  <p class="p-2 card-text"><i>Il est temps de passer aux choses sérieuses et de bloquer Carrefour Portet et plus le rond point de l'Autoroute</i><br />
+                  <span class="badge badge-info">Chaque page recrute 10 GJ par seconde</span><br />
+                  <span id="FBPRegion" class="badge badge-light">0 pages crées</span><br />
+                  <span id="buildCostRegion" class="badge badge-light">1000 GJ doivent liker pour une nouvelle page</span><br />
+                  <button type="button" name="recrute-auto-fbpregion" onclick="buildFBPRegion()" id="buildFBPRegion"  class="btn btn-primary btn-lg">Créer</button></p>
+                </div>
+                <div class="tab-pane container fade" id="pays">
+                  <p class="p-2 card-text"><i>Enfin l'heure de monter à Paris, les Champs Elysées ! Les CRS ! Les Lacrymos !</i><br />
+                  <span class="badge badge-info">Chaque page recrute 100 GJ par seconde</span><br />
+                  <span id="FBPPays" class="badge badge-light">0 pages crées</span><br />
+                  <span id="buildCostPays" class="badge badge-light">10000 GJ doivent liker pour une nouvelle page</span><br />
+                  <button type="button" name="recrute-auto-fbpPays" onclick="buildFBPPays()" id="buildFBPPays"  class="btn btn-primary btn-lg">Créer</button></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
