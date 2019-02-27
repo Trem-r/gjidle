@@ -13,6 +13,30 @@
   </head>
   <body>
     <div class="jumbotron">
+      <div class="d-flex flex-row-reverse">
+        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#myModal">Supprimer ancienne sauvegarde</button>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Supprimer la sauvegarde ?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                Etes-vous certain de vouloir supprimer la sauvegarde ? Imposible de revenir en arrière !
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delSave()">Oui, supprimer</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Non ! ne pas supprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <h1>Gilets Jaunes Idle</h1>
       <p>Pour que Macron démissionne, il va falloir mobiliser sur les ronds points.</p>
     </div>
@@ -83,7 +107,7 @@
                   <p class="p-2 card-text"><i>Augmenter les taxes sur le diesel ? PAS QUESTION ! Allons tous sur Internet !</i><br />
                   <span class="badge badge-info">Chaque pétition sur Internet rajoute 100 copains par clic</span><br />
                   <span id="perClickUpgradeInternet" class="badge badge-light">Déjà 0 pétitions</span><br />
-                  <span id="perClickUpgradeInternetCost" class="badge badge-light">100000 GJ doivent signer pour une nouvelle pétition</span><br />
+                  <span id="perClickUpgradeInternetCost" class="badge badge-light">10000 GJ doivent signer pour une nouvelle pétition</span><br />
                   <button type="button" name="recrute-par-clic-internet" onclick="recruteGiletPerClick('Internet')" class="btn btn-warning btn-lg">Signer !</button></p>
                 </div>
               </div>

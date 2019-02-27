@@ -199,6 +199,10 @@ var saveGameLoop = window.setInterval(function() {
   localStorage.setItem('giletIdleSave', JSON.stringify(gameData))
 }, 1500)
 
+function delSave(){
+  localStorage.clear();  
+}
+
 /* function format(number, type) {
     let exponent = Math.floor(Math.log10(number))
     let mantissa = number / Math.pow(10, exponent)
